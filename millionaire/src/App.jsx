@@ -4,6 +4,8 @@ import './App.css';
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
+  const [earned, setEarned] = useState("$0");
+  
 
   const data = [
     {
@@ -87,17 +89,23 @@ function App() {
     {id:10, amount:'$1000'},
 
   ].reverse()
+  
 
   return (
     <>
       <div className="app">
       <div className="main">
-        <div className="top">
-          <div className="timer">30</div>
-        </div>
-        <div className="bottom">
-          <Trivia data={data} setStop={setStop} setQuestionNumber={setQuestionNumber} questionNumber={questionNumber}/>
-        </div>
+      {stop ? <h1 className='endText'>You earned: {earned}</h1> : (
+        <>
+           <div className="top">
+            <div className="timer">30</div>
+            </div>
+            <div className="bottom">
+           <Trivia data={data} setStop={setStop} setQuestionNumber={setQuestionNumber} questionNumber={questionNumber}/>
+            </div>
+            </>
+      )}
+
       </div>
       <div className="pyramid">
         <ul className="moneyList">
